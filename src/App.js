@@ -5,6 +5,11 @@ import './App.css';
 
 class App extends Component {
   render() {
+    const name = 12;
+    const fn = (name = '123') => {
+      console.log(123);
+    }
+    fn();
     return (
       <div className="App">
         <header className="App-header">
