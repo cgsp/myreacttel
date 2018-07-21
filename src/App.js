@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { createStore } from 'redux';
+// import { createStore } from 'redux';
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
   render() {
-    const name = 12;
     const fn = (name = '123') => {
-      console.log(123);
-    }
+      console.log(name);
+    };
     fn();
     return (
       <div className="App">

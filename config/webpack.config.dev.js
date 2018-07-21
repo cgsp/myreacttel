@@ -110,17 +110,25 @@ module.exports = {
       {
         test: /\.(js|jsx|mjs)$/,
         enforce: 'pre',
-        use: [
-          {
-            options: {
-              formatter: eslintFormatter,
-              eslintPath: require.resolve('eslint'),
+        // use: [
+        //   {
+        //     options: {
+        //       formatter: eslintFormatter,
+        //       eslintPath: require.resolve('eslint'),
 
-            },
-            loader: require.resolve('eslint-loader'),
-          },
-        ],
+        //     },
+        //     loader: require.resolve('eslint-loader'),
+        //   },
+        // ],
+        loader: 'eslint-loader',
         include: paths.appSrc,
+        exclude: [
+          path.resolve(__dirname, '../node_modules'),
+          path.resolve(__dirname, '../config'),
+          path.resolve(__dirname, '../build'),
+          path.resolve(__dirname, '../script'),
+          path.resolve(__dirname, '../src/registerServiceWorker.js')
+        ]
       },
       {
         // "oneOf" will traverse all following loaders until one will
