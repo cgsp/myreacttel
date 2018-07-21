@@ -3,6 +3,10 @@
 # dependencies
 /node_modules
 
+/cros_mini_server/node_modules
+
+/mini_server/node_modules
+
 # testing
 /coverage
 
