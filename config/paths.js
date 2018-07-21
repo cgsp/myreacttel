@@ -18,9 +18,9 @@ function ensureSlash(path, needsSlash) {
   } else if (!hasSlash && needsSlash) {
     return `${path}/`;
   } else {
-    // return path;
+    return path;
     // 解决打包出来的静态资源必须在服务器根目录才能访问的问题
-    return `.${path}/`;
+    // return `.${path}/`;
   }
 }
 
