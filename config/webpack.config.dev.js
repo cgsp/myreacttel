@@ -124,9 +124,12 @@ module.exports = {
         include: paths.appSrc,
         exclude: [
           path.resolve(__dirname, '../node_modules'),
+          path.resolve(__dirname, '../build'),
           path.resolve(__dirname, '../config'),
+          path.resolve(__dirname, '../cros_mini_server'),
           path.resolve(__dirname, '../dist'),
-          path.resolve(__dirname, '../script'),
+          path.resolve(__dirname, '../mini_server'),
+          path.resolve(__dirname, '../mongodb_server'),
           path.resolve(__dirname, '../src/registerServiceWorker.js')
         ]
       },
