@@ -233,16 +233,30 @@ module.exports = {
           // This loader doesn't use a "test" so it will catch all modules
           // that fall through the other loaders.
           {
-            loader: require.resolve('file-loader'),
             // Exclude `js` files to keep "css" loader working as it injects
-            // it's runtime that would otherwise processed through "file" loader.
+            // its runtime that would otherwise processed through "file" loader.
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
-            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/],
+            loader: require.resolve('file-loader'),
+            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/, /\.sass$/, /\.scss$/],
             options: {
               name: 'static/media/[name].[hash:8].[ext]',
             },
           },
+          // 模块化
+          {
+            test: /\.(scss|sass)$/,
+            use: [
+              'style-loader',
+              { loader: 'css-loader', options: { importLoaders: 1, modules: true, localIdentName: '[name]__[local]__[hash:base64:10]' } },
+              'sass-loader'
+            ]
+          },
+          // 非模块化
+          // {
+          //   test: /\.(scss|sass)$/,
+          //   loaders: ['style-loader', 'css-loader', 'sass-loader']
+          // }
           // ** STOP ** Are you adding a new loader?
           // Make sure to add the new loader(s) before the "file" loader.
         ],
