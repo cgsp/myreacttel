@@ -35,6 +35,8 @@
     "react/jsx-pascal-case": 1,
     "react/prefer-stateless-function": 0,
     "no-console": 0,
-    "react/jsx-filename-extension": 0
+    "react/jsx-filename-extension": 0,
+    "import/no-unresolved": 0,
+    "import/extensions": 0
   }
 }

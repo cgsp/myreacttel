@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { commonParams } from '@api/config';
+
 // import { createStore } from 'redux';
 import './App.css';
 
@@ -9,6 +11,7 @@ console.log(last); // [2,2,3,43]
 const [head1, ...last1] = [1, 2, 2, 3, 43].reverse();
 console.log(head1); // 43
 console.log(last1); // [3,2,2,1]
+console.log(commonParams); // [3,2,2,1]
 
 
 

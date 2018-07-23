@@ -4,13 +4,13 @@ const commonParams = {
   inCharset: 'utf-8',
   outCharset: 'utf-8',
   notice: 0,
-  format: 'jsonp'
+  format: 'jsonp',
 };
 
 // 定义原始jsonp所用的options(通常只用写一个callback即可), 也就是callback(不同的接口的callback是不一致的,前后端约定好即可)
 const options = {
   param: 'jsonpCallback',
-  prefix: 'jp'
+  prefix: 'jp',
 };
 
 // 定义数据成功的ERR_OK,一般大公司都喜欢用0
