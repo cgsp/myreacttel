@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import { myAxios } from '@utils/myAxios';
 // import { createStore } from 'redux';
 import logo from '@common/imgs/logo.png';
+import lazy from '@common/imgs/lazy.png';
 import css from './App.scss';
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <img src={logo} alt="加载失败" />
+        <img src={lazy} alt="加载失败" />
         <div>{icon}</div>
 
       </div>
