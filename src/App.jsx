@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { commonParams } from '@api/config';
+import { Button } from 'antd';
 
 // import { createStore } from 'redux';
 import css from './App.scss';
@@ -31,6 +32,7 @@ class App extends Component {
         <p className={css['App-intro']}>
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <Button type="primary">Submit</Button>
       </div>
     );
   }
