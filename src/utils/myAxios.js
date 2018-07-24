@@ -2,15 +2,23 @@
  * @Author: John.Guan
  * @Date: 2018-07-24 15:01:37
  * @Last Modified by: John.Guan
- * @Last Modified time: 2018-07-24 15:08:00
+ * @Last Modified time: 2018-07-24 16:19:34
  */
 import axios from 'axios';
 import qs from 'qs';
 import { myLocalStorageGet } from '@utils/myStorage';
 import { BASEURL } from '@common/js/config';
+
 const DEV = process.env.NODE_ENV !== 'production';
+console.log(process.env.NODE_ENV);
 let baseURL;
-DEV ? baseURL = BASEURL.dev : BASEURL.pro;
+if (DEV) {
+  baseURL = BASEURL.dev;
+} else {
+  baseURL = BASEURL.pro;
+}
+
+axios.defaults.baseURL = baseURL;
 
 /*
  * 1、token设置--下面这样设置，好像第一次请求，没办法带上token；
@@ -31,30 +39,34 @@ DEV ? baseURL = BASEURL.dev : BASEURL.pro;
 function myAxios(options) {
   const method = options.method || 'get';
 
-  const url = baseURL + options.url || '';
+  const url = options.url || '';
+
+  const time = Date.now();
+  const params = { ...{ _: time }, ...options.params };
+
+  const headers = options.headers || {
+    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+    // 'Content-Type': 'application/json;charset=UTF-8',
+    Authorization: myLocalStorageGet('token', ''),
+  };
 
   let data;
   if (method === 'get') {
     data = null;
-  } else {
+  } else if (method === 'post' && headers['Content-Type'] === 'application/json;charset=UTF-8') {
+    data = options.data || {};
+  } else if (method === 'post' && headers['Content-Type'] === 'application/x-www-form-urlencoded;charset=UTF-8') {
     data = qs.stringify(options.data) || qs.stringify({});
   }
 
-  const params = { ...{ _: time }, ...options.params };
-
-  const headers = options.headers || {
-    // 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-    'Content-Type': 'application/json;charset=UTF-8',
-    'Authorization': myLocalStorageGet('token', '')
-  };
 
   return new Promise((resolve, reject) => {
     axios({
-      method: method,
-      url: url,
-      data: data,
-      params: params,
-      headers: headers
+      method,
+      url,
+      data,
+      params,
+      headers,
     }).then((res) => {
       resolve(res.data);
     })
@@ -63,4 +75,48 @@ function myAxios(options) {
 }
 
 export { myAxios };
+
+
+/*
+ * header的几种设置
+ */
+// 1、如果header只想带Content-Type，不想带token或者Authorization的话，这么设置
+// header={
+//   'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+// }
+// 或者
+// header={
+//   'Content-Type': 'application/json;charset=UTF-8'
+// }
+
+
+
+/*
+ * 使用示范
+ */
+// myAxios({
+//   url: 'ddw-exchange-show/item-data',
+//   method: 'get',
+//   headers: {
+//     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+//     // // 'Content-Type': 'application/json;charset=UTF-8',
+//     // Authorization: myLocalStorageGet('token', ''),
+//     Token: '1wvd1QFHvSySrfuOvCfTkTmMnCJCsh7QwfBCugZQvC7LnwzTwDeT3t4CosZczCBottjivPePysIVuwritd4AuD4i1tBcodBrmuBymwmTqPB9tA4Png3Zpq==',
+//   },
+//   data: {
+//     sex: 'man',
+//     chang: 'guan',
+//   },
+//   params: {
+//     dimension: 'month',
+//     name: '总计',
+//     month: '2018-07',
+//   },
+// })
+//   .then((res) => {
+//     console.log(res);
+//   })
+//   .catch((res) => {
+
+//   })
 

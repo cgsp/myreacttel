@@ -38,6 +38,9 @@
     "react/jsx-filename-extension": 0,
     "import/no-unresolved": 0,
     "import/extensions": 0,
-    "dot-notation": 0
+    "dot-notation": 0,
+    "import/prefer-default-export": 0,
+    "arrow-body-style": 0,
+    "max-len": 0
   }
 }
