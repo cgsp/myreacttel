@@ -1,4 +1,4 @@
-// 引入兼容性
+// 兼容性处理，兼容低版本浏览器
 import 'babel-polyfill';
 import 'raf/polyfill';
 
@@ -11,6 +11,8 @@ import '@common/scss/index.scss';
 
 // 引入根组件
 import App from './App';
+
+// 引入离线缓存文件
 import registerServiceWorker from './registerServiceWorker';
 
 // 根组件绑定

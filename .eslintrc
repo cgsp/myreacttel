@@ -32,6 +32,8 @@
     "import/prefer-default-export": 0,
     "arrow-body-style": 0,
     "max-len": 0,
-    "jsx-quotes": 0
+    "jsx-quotes": 0,
+    "react/self-closing-comp": 0,
+    "react/react-in-jsx-scope": 0
   }
 }
