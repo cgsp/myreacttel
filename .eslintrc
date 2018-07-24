@@ -25,7 +25,6 @@
     "no-extra-parens": 0,
     "no-multi-spaces": 1,
     "react/jsx-space-before-closing": 1,
-    "jsx-quotes": 1,
     "react/jsx-closing-bracket-location": 1,
     "react/jsx-boolean-value": 1,
     "react/no-string-refs": 1,
@@ -41,6 +40,7 @@
     "dot-notation": 0,
     "import/prefer-default-export": 0,
     "arrow-body-style": 0,
-    "max-len": 0
+    "max-len": 0,
+    "jsx-quotes": 0
   }
 }
