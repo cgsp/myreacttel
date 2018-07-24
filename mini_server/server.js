@@ -3,7 +3,7 @@
  * @Author: John.Guan
  * @Date: 2018-05-29 23:01:41
  * @Last Modified by: John.Guan
- * @Last Modified time: 2018-06-24 11:53:27
+ * @Last Modified time: 2018-07-24 14:29:33
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
@@ -158,3 +158,7 @@ var stocks = [
   new Stock(4, '第4个股票', 4, 4.3, 'gsp第4个股票', ['IT', '互联网']),
   new Stock(5, '第5个股票', 5, 5.3, 'gsp第5个股票', ['IT', '互联网'])
 ];
+
+app.get('/stock', function (req, res) {
+  res.json(stocks);
+});

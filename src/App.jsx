@@ -15,7 +15,6 @@ console.log(last1); // [3,2,2,1]
 console.log(commonParams); // [3,2,2,1]
 
 
-
 class App extends Component {
   render() {
     const fn = (name = '123') => {
