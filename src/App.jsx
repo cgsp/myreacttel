@@ -6,7 +6,7 @@ import css from './App.scss';
 
 class App extends Component {
   render() {
-    const icon = <i className="icon-mine" style={{ display: 'block', height: '200px', width: '200px', color: 'red', backgroundColor: '#ccc', fontSize: '20px' }} />;
+    const icon = <span className="icon-mine" style={{ display: 'block', height: '200px', width: '200px', color: 'red', backgroundColor: '#ccc', fontSize: '20px' }} />;
     return (
       <div className={css['App']}>
         <header className={css['App-header']}>
@@ -17,6 +17,7 @@ class App extends Component {
         </p>
         <img src={logo} alt="加载失败" />
         <div>{icon}</div>
+
       </div>
     );
   }

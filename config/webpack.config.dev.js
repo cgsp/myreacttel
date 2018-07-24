@@ -280,7 +280,7 @@ module.exports = {
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
             loader: require.resolve('file-loader'),
-            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/, /\.sass$/, /\.scss$/],
+            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/, /\.sass$/, /\.scss$/, /\.svg$/],
             options: {
               name: 'static/media/[name].[hash:8].[ext]',
             },
