@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { myAxios } from '@utils/myAxios';
+// import { myAxios } from '@utils/myAxios';
 // import { createStore } from 'redux';
 import css from './App.scss';
-
-console.log(myAxios);
-
 
 class App extends Component {
   render() {
