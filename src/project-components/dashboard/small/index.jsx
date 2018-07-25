@@ -10,6 +10,7 @@ class Small extends Component {
       sex: 'man'
     };
   }
+  /* eslint-disable */
   render() {
     if (!this.timer) {
       this.timer = setTimeout(() => {
@@ -26,14 +27,19 @@ class Small extends Component {
         <div>父组件传给我的 str是 {this.props.str}</div>
         <div>我自身的state中的name是 {this.state.name}</div>
         <div>我自身的state中的sex是 {this.state.sex}</div>
+        <div>
+          我是子页面的输入框 <input type="text" onChange={() => this.props.changeInputValue(12, 'aaa')} />
+        </div>
       </div>
     );
   }
+  /* eslint-enable */
 }
 
 Small.propTypes = {
   num: PropTypes.number.isRequired,
-  str: PropTypes.string.isRequired
+  str: PropTypes.string.isRequired,
+  changeInputValue: PropTypes.func.isRequired
 };
 
 export default Small;
