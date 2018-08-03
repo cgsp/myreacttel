@@ -187,7 +187,7 @@ module.exports = {
                 //['react-html-attrs'],//添加babel-plugin-react-html-attrs组件的插件配置
                 // 引入样式为 css
                 // ['import', { libraryName: 'antd', style: 'css' }],
-                ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }] // `style: true` 会加载 less 文件
+                ["import", { "libraryName": "antd-mobile", "libraryDirectory": "es", "style": "css" }] // `style: true` 会加载 less 文件
                 // 改动: 引入样式为 less
                 //  ['import', { libraryName: 'antd', style: true }],
               ],
@@ -211,7 +211,7 @@ module.exports = {
           // in the main CSS file.
           {
             test: /\.css$/,
-            exclude: /node_modules|antd\.css/,
+            exclude: /node_modules|antd-mobile\.css/,
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
@@ -259,7 +259,7 @@ module.exports = {
           },
           {
             test: /\.css$/,
-            include: /node_modules|antd\.css/,
+            include: /node_modules|antd-mobile\.css/,
             use: [
               require.resolve('style-loader'),
               {
@@ -311,7 +311,7 @@ module.exports = {
           // 模块化
           {
             test: /\.(scss|sass)$/,
-            exclude: /node_modules|antd\.css/,
+            exclude: /node_modules|antd-mobile\.css/,
             use: [
               'style-loader',
               { loader: 'css-loader', options: { importLoaders: 1, modules: true, localIdentName: '[name]__[local]__[hash:base64:10]' } },
