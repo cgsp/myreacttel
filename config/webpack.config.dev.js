@@ -88,11 +88,12 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
-      '@api': path.join(__dirname, '..', 'src/api'),
+      '@Api': path.join(__dirname, '..', 'src/api'),
       '@VBase': path.join(__dirname, '..', 'src/base-components'),
       '@VProject': path.join(__dirname, '..', 'src/project-components'),
-      '@common': path.join(__dirname, '..', 'src/common'),
-      '@utils': path.join(__dirname, '..', 'src/utils')
+      '@Common': path.join(__dirname, '..', 'src/common'),
+      '@Utils': path.join(__dirname, '..', 'src/utils'),
+      '@Redux': path.join(__dirname, '..', 'src/redux'),
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).

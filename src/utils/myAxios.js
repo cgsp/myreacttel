@@ -2,12 +2,12 @@
  * @Author: John.Guan
  * @Date: 2018-07-24 15:01:37
  * @Last Modified by: John.Guan
- * @Last Modified time: 2018-07-24 16:19:34
+ * @Last Modified time: 2018-08-03 14:10:09
  */
 import axios from 'axios';
 import qs from 'qs';
-import { myLocalStorageGet } from '@utils/myStorage';
-import { BASEURL } from '@common/js/config';
+import { myLocalStorageGet } from '@Utils/myStorage';
+import { BASEURL } from '@Common/js/config';
 
 const DEV = process.env.NODE_ENV !== 'production';
 console.log(process.env.NODE_ENV);
