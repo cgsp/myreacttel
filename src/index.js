@@ -25,11 +25,11 @@ import ReactDOM from 'react-dom';
 import '@Common/scss/index.scss';
 
 // 引入路由
-import { BrowserRouter, Link } from 'react-router-dom';
+import { HashRouter, Link } from 'react-router-dom';
 import ProjectRoutes from '@Router';
 
 // 引入离线缓存文件
-// import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from './registerServiceWorker';
 // import { unregister } from './registerServiceWorker';
 
 // 绑定fastclick
@@ -49,7 +49,7 @@ const store = createStore(reducer, compose(
 ReactDOM.render(
   (
     <Provider store={store}>
-      <BrowserRouter>
+      <HashRouter>
         <div>
           <ul>
             <li>
@@ -64,9 +64,9 @@ ReactDOM.render(
           </ul>
           <ProjectRoutes />
         </div>
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
   ),
   document.getElementById('root'));
-// registerServiceWorker();
+registerServiceWorker();
 // unregister();
