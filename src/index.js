@@ -24,11 +24,13 @@ import ReactDOM from 'react-dom';
 // 引入全局的scss设置
 import '@Common/scss/index.scss';
 
-// 引入根组件
-import App from './App';
+// 引入路由
+import { BrowserRouter, Link } from 'react-router-dom';
+import ProjectRoutes from '@Router';
 
 // 引入离线缓存文件
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
+// import { unregister } from './registerServiceWorker';
 
 // 绑定fastclick
 fastclick.attach(document.body);
@@ -47,8 +49,24 @@ const store = createStore(reducer, compose(
 ReactDOM.render(
   (
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <div>
+          <ul>
+            <li>
+              <Link to="/yiying">一营</Link>
+            </li>
+            <li>
+              <Link to="/erying">二营</Link>
+            </li>
+            <li>
+              <Link to="/sanying">三营</Link>
+            </li>
+          </ul>
+          <ProjectRoutes />
+        </div>
+      </BrowserRouter>
     </Provider>
   ),
   document.getElementById('root'));
-registerServiceWorker();
+// registerServiceWorker();
+// unregister();

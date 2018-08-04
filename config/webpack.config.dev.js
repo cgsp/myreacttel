@@ -94,6 +94,7 @@ module.exports = {
       '@Common': path.join(__dirname, '..', 'src/common'),
       '@Utils': path.join(__dirname, '..', 'src/utils'),
       '@Redux': path.join(__dirname, '..', 'src/redux'),
+      '@Router': path.join(__dirname, '..', 'src/router'),
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
