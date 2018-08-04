@@ -59,7 +59,7 @@ ReactDOM.render(
               <Link to="/erying">二营</Link>
             </li>
             <li>
-              <Link to={'/sanying/123/aaa'}>三营</Link>
+              <Link to={{ pathname: '/sanying', state: { type: 'sex' } }}>三营</Link>
             </li>
           </ul>
           <ProjectRoutes />
