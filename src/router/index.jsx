@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { asyncComponent } from './AsyncComponent';
+import { asyncComponent } from './asyncComponent';
 
 // 引入路由对应的组件
 // import App from '../App';
