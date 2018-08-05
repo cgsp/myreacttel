@@ -24,9 +24,8 @@ import ReactDOM from 'react-dom';
 // 引入全局的scss设置
 import '@Common/scss/index.scss';
 
-// 引入路由
-import { HashRouter, Link } from 'react-router-dom';
-import ProjectRoutes from '@Router';
+// 引入根路由
+import RootRoutes from '@Router';
 
 // 引入离线缓存文件
 import registerServiceWorker from './registerServiceWorker';
@@ -49,22 +48,7 @@ const store = createStore(reducer, compose(
 ReactDOM.render(
   (
     <Provider store={store}>
-      <HashRouter>
-        <div>
-          <ul>
-            <li>
-              <Link to="/yiying">一营</Link>
-            </li>
-            <li>
-              <Link to="/erying">二营</Link>
-            </li>
-            <li>
-              <Link to={{ pathname: '/sanying', state: { type: 'sex' } }}>三营</Link>
-            </li>
-          </ul>
-          <ProjectRoutes />
-        </div>
-      </HashRouter>
+      <RootRoutes />
     </Provider>
   ),
   document.getElementById('root'));

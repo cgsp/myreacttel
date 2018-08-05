@@ -1,0 +1,15 @@
+.tab-wrapper {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    .tab-item {
+        flex: 1;
+        a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            line-height: 40px;
+            text-align: center;
+        }
+    }
+}

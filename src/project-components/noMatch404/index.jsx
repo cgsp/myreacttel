@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import css from './index.scss';
 
 class NoMatch404 extends Component {
   render() {
-    return <h1>404页面</h1>;
+    return (
+      <div className={css['wrapper-404']}>
+        404页面
+      </div>
+    );
   }
 }
 
