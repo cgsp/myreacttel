@@ -2,24 +2,17 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { login } from '@Redux/login.reducer';
+import { login, getUserData } from '@Redux/login.reducer';
 import { Button } from 'antd-mobile';
 
 @connect(
-  state => ({ auth: state.loginReducer.auth }),
-  { login }
+  state => ({ auth: state.loginReducer.auth, user: state.loginReducer.user, age: state.loginReducer.age }),
+  { login, getUserData }
 )
 class LoginPage extends Component {
-  // componentDidUpdate() {
-  //   const auth = this.props.auth;
-  //   if (auth) {
-  //     this.toApp();
-  //   }
-  // }
-
-  // toApp() {
-  //   this.props.history.push('/app/yiying');
-  // }
+  componentDidMount() {
+    this.props.getUserData();
+  }
 
   render() {
     return (
@@ -28,7 +21,13 @@ class LoginPage extends Component {
         {
           this.props.auth ?
             <Redirect to="/app/yiying" /> :
-            <Button type="primary" onClick={this.props.login}>登录</Button>
+            (
+              <div>
+                <Button type="primary" onClick={this.props.login}>登录</Button>
+                <div>用户名是:{this.props.user}</div>
+                <div>年龄是:{this.props.age}</div>
+              </div>
+            )
         }
       </div>
     );
@@ -37,8 +36,10 @@ class LoginPage extends Component {
 
 LoginPage.propTypes = {
   auth: PropTypes.bool,
+  user: PropTypes.string,
+  age: PropTypes.number,
   login: PropTypes.func,
-  // history: PropTypes.object
+  getUserData: PropTypes.func
 };
 
 export default LoginPage;
