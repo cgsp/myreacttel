@@ -14,8 +14,8 @@ import thunk from 'redux-thunk';
 // 引入react-redux
 import { Provider } from 'react-redux';
 
-// 引入reducer
-import { reducer } from '@Redux';
+// 引入reducers
+import reducers from '@Redux';
 
 // 引入react
 import React from 'react';
@@ -39,10 +39,13 @@ fastclick.attach(document.body);
 const reduxDevtools = window.devToolsExtension ? window.devToolsExtension() : f => f;
 
 // 创建store
-const store = createStore(reducer, compose(
+const store = createStore(reducers, compose(
   applyMiddleware(thunk),
   reduxDevtools
 ));
+
+// 查看初始的store的数据
+console.log(store.getState());
 
 // 根组件绑定
 ReactDOM.render(

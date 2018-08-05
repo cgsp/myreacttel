@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'antd-mobile';
 // 引入react-redux
 import { connect } from 'react-redux';
-import { addGun, removeGun, addGunAsync } from '@Redux';
+import { addGun, removeGun, addGunAsync } from '@Redux/yi-ying.reducer';
 
 // const mapStatetoProps = (state) => {
 //   return {
@@ -14,7 +14,7 @@ import { addGun, removeGun, addGunAsync } from '@Redux';
 // const actionCreators = { addGun, removeGun, addGunAsync };
 // YiYing = connect(mapStatetoProps, actionCreators)(YiYing);
 @connect(
-  state => ({ num: state }),
+  state => ({ num: state.yiYingReducer, auth: state.loginReducer.auth }),
   { addGun, removeGun, addGunAsync }
 )
 class YiYing extends Component {
