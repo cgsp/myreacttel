@@ -45,7 +45,7 @@ const store = createStore(reducers, compose(
 ));
 
 // 查看初始的store的数据
-console.log(store.getState());
+// console.log(store.getState());
 
 // 根组件绑定
 ReactDOM.render(

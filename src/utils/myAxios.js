@@ -2,12 +2,13 @@
  * @Author: John.Guan
  * @Date: 2018-07-24 15:01:37
  * @Last Modified by: John.Guan
- * @Last Modified time: 2018-08-03 14:10:09
+ * @Last Modified time: 2018-08-05 16:45:15
  */
 import axios from 'axios';
 import qs from 'qs';
 import { myLocalStorageGet } from '@Utils/myStorage';
 import { BASEURL } from '@Common/js/config';
+import { Toast } from 'antd-mobile';
 
 const DEV = process.env.NODE_ENV !== 'production';
 console.log(process.env.NODE_ENV);
@@ -17,8 +18,49 @@ if (DEV) {
 } else {
   baseURL = BASEURL.pro;
 }
-
+/*
+ * 全局baseURL的设置
+ */
 axios.defaults.baseURL = baseURL;
+
+/*
+ * 全局拦截器的设置
+ */
+// 添加请求拦截器
+axios.interceptors.request.use((config) => {
+  // 在发送请求之前做些什么
+  Toast.loading('加载中', 0, null, true);
+  // console.log('请求成功拦截器:', config);
+  return config;
+}, (error) => {
+  // 对请求错误做些什么
+  // Toast.fail('请求失败', 0, null, true);
+  // setTimeout(() => {
+  //   Toast.hide();
+  // }, 600);
+  // console.log('请求失败拦截器:', error);
+  return Promise.reject(error);
+});
+
+// 添加响应拦截器
+axios.interceptors.response.use((response) => {
+  // 对响应数据做点什么
+  setTimeout(() => {
+    Toast.hide();
+  }, 300);
+  // console.log('响应成功拦截器:', response);
+  return response;
+}, (error) => {
+  // 对响应错误做点什么
+  Toast.fail('响应失败', 0, null, true);
+  setTimeout(() => {
+    Toast.hide();
+  }, 600);
+  // console.log('响应失败拦截器:', error);
+  return Promise.reject(error);
+});
+
+
 
 /*
  * 1、token设置--下面这样设置，好像第一次请求，没办法带上token；

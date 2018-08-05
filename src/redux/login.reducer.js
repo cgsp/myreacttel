@@ -12,7 +12,6 @@ const initState = {
 
 // reducer
 export function loginReducer(state = initState, action) {
-  console.log(state, action);
   switch (action.type) {
     case LOGIN:
       return { ...state, auth: true };
