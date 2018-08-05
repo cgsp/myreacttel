@@ -14,7 +14,7 @@ class ErYing extends Component {
 
   toThird() {
     this.props.history.push({
-      pathname: '/sanying',
+      pathname: '/app/sanying',
       state: {
         type: 'sex',
         name: 'hahhah'
