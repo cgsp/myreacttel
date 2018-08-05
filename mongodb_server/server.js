@@ -63,7 +63,7 @@ app.get('/', function (req, res) {
 
 app.get('/data', function (req, res) {
   // 查找
-  User.findOne({ 'user': 'chang' }, function (err, doc) {
+  User.find({}, function (err, doc) {
     res.json(doc);
   })
 })
