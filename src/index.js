@@ -7,6 +7,7 @@ import fastclick from 'fastclick';
 
 // 引入redux
 import { createStore, applyMiddleware, compose } from 'redux';
+import { HashRouter } from 'react-router-dom';
 
 // 引入redux-thunk
 import thunk from 'redux-thunk';
@@ -26,6 +27,9 @@ import '@Common/scss/index.scss';
 
 // 引入根路由
 import RootRoutes from '@Router';
+
+// 引入全局的权限组件
+import JudgeUserAuth from '@VProject/business/judge-user-auth';
 
 // 引入离线缓存文件
 import registerServiceWorker from './registerServiceWorker';
@@ -51,7 +55,12 @@ const store = createStore(reducers, compose(
 ReactDOM.render(
   (
     <Provider store={store}>
-      <RootRoutes />
+      <HashRouter>
+        <div>
+          <JudgeUserAuth />
+          <RootRoutes />
+        </div>
+      </HashRouter>
     </Provider>
   ),
   document.getElementById('root'));
