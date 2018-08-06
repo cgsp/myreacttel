@@ -19,8 +19,8 @@ const User = mongoose.model('user', new mongoose.Schema({
 
 // 新增
 // User.create({
-//   user: 'xiaoming',
-//   age: 12
+//   user: 'xiaoming111',
+//   age: 12111
 // }, function (err, doc) {
 //   if (err) {
 //     console.log(err);

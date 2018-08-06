@@ -1,45 +1,40 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
-import { connect } from 'react-redux';
-import { login, getUserData } from '@Redux/login.reducer';
-import { Button } from 'antd-mobile';
+import { WingBlank, WhiteSpace, Button, List, InputItem } from 'antd-mobile';
+import Logo from '@VProject/business/logo';
 
-@connect(
-  state => ({ auth: state.loginReducer.auth, user: state.loginReducer.user, age: state.loginReducer.age }),
-  { login, getUserData }
-)
-class LoginPage extends Component {
-  componentDidMount() {
-    this.props.getUserData();
+class Login extends Component {
+  constructor() {
+    super();
+    this.register = this.register.bind(this);
   }
-
+  register() {
+    this.props.history.push('/register');
+  }
   render() {
     return (
       <div>
-        <div>{this.props.auth ? '已经登录了' : '请登录'}</div>
-        {
-          this.props.auth ?
-            <Redirect to="/app/yiying" /> :
-            (
-              <div>
-                <Button type="primary" onClick={this.props.login}>登录</Button>
-                <div>用户名是:{this.props.user}</div>
-                <div>年龄是:{this.props.age}</div>
-              </div>
-            )
-        }
+        <Logo />
+        <h2>登录页面</h2>
+        <WhiteSpace />
+        <WingBlank>
+          <List>
+            <InputItem>用户名</InputItem>
+            <WhiteSpace />
+            <InputItem>密码</InputItem>
+          </List>
+          <WhiteSpace />
+          <Button type="primary">登录</Button>
+          <WhiteSpace />
+          <Button onClick={this.register} type="primary">注册</Button>
+        </WingBlank>
       </div>
     );
   }
 }
 
-LoginPage.propTypes = {
-  auth: PropTypes.bool,
-  user: PropTypes.string,
-  age: PropTypes.number,
-  login: PropTypes.func,
-  getUserData: PropTypes.func
+Login.propTypes = {
+  history: PropTypes.object
 };
 
-export default LoginPage;
+export default Login;

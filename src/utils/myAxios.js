@@ -2,7 +2,7 @@
  * @Author: John.Guan
  * @Date: 2018-07-24 15:01:37
  * @Last Modified by: John.Guan
- * @Last Modified time: 2018-08-05 16:45:15
+ * @Last Modified time: 2018-08-06 08:51:12
  */
 import axios from 'axios';
 import qs from 'qs';
@@ -45,9 +45,7 @@ axios.interceptors.request.use((config) => {
 // 添加响应拦截器
 axios.interceptors.response.use((response) => {
   // 对响应数据做点什么
-  setTimeout(() => {
-    Toast.hide();
-  }, 300);
+  Toast.hide();
   // console.log('响应成功拦截器:', response);
   return response;
 }, (error) => {
