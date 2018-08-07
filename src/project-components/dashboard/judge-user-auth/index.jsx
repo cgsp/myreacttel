@@ -2,7 +2,7 @@
  * @Author: John.Guan
  * @Date: 2018-08-06 19:15:39
  * @Last Modified by: John.Guan
- * @Last Modified time: 2018-08-07 08:07:20
+ * @Last Modified time: 2018-08-07 09:41:17
  */
 import { Component } from 'react';
 import { PropTypes } from 'prop-types';
@@ -16,7 +16,6 @@ class JudgeUserAuth extends Component {
     // 没登录的情况下，除了本身就在login页面，都需要跳出来
     // 2、用户的type，是boss还是牛人
     // 3、用户的信息是否完善，如简历，头像
-
     const publicList = ['/login', '/register'];
     const nowPath = this.props.location.pathname;
 
