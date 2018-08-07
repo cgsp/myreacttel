@@ -2,7 +2,7 @@
  * @Author: John.Guan
  * @Date: 2018-07-24 15:01:37
  * @Last Modified by: John.Guan
- * @Last Modified time: 2018-08-06 08:51:12
+ * @Last Modified time: 2018-08-07 13:37:43
  */
 import axios from 'axios';
 import qs from 'qs';
@@ -121,11 +121,11 @@ export { myAxios };
  * header的几种设置
  */
 // 1、如果header只想带Content-Type，不想带token或者Authorization的话，这么设置
-// header={
+// headers={
 //   'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
 // }
 // 或者
-// header={
+// headers={
 //   'Content-Type': 'application/json;charset=UTF-8'
 // }
 

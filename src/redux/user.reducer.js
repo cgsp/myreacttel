@@ -34,7 +34,7 @@ export function handleRegister({ type, user, pwd, repeatpwd }) {
     return errorMsg('用户名或密码不能为空！');
   }
 
-  if (user !== pwd) {
+  if (repeatpwd !== pwd) {
     return errorMsg('密码与确认密码必须相同！');
   }
 

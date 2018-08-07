@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-import { WingBlank, WhiteSpace, List, InputItem, Button, Radio } from 'antd-mobile';
+import { WingBlank, WhiteSpace, List, InputItem, Button, Radio, NoticeBar, Icon } from 'antd-mobile';
+import { connect } from 'react-redux';
+import { handleRegister } from '@Redux/user.reducer';
+import { PropTypes } from 'prop-types';
 import Logo from '@VProject/business/logo';
 import css from './index.scss';
 
+
+@connect(
+  state => state.userReducer,
+  { handleRegister }
+)
 class Register extends Component {
   constructor() {
     super();
@@ -28,13 +36,16 @@ class Register extends Component {
 
 
   handleRegister() {
-    console.log(this.state);
+    this.props.handleRegister(this.state);
   }
 
   render() {
     const RadioItem = Radio.RadioItem;
     return (
       <div className={css['register']}>
+        {this.props.msg ? <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
+          {this.props.msg}
+        </NoticeBar> : null}
         <Logo />
         <WingBlank>
           <List>
@@ -54,10 +65,17 @@ class Register extends Component {
           <WhiteSpace />
           <WhiteSpace />
           <Button type="primary" onClick={() => this.handleRegister()}>注册</Button>
+          <WhiteSpace />
+          <WhiteSpace />
         </WingBlank>
       </div>
     );
   }
 }
+
+Register.propTypes = {
+  handleRegister: PropTypes.func,
+  msg: PropTypes.string
+};
 
 export default Register;
