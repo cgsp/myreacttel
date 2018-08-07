@@ -4,20 +4,19 @@ export function asyncComponent(importComponent) {
   class AsyncComponent extends Component {
     constructor(props) {
       super(props);
-
       this.state = {
         component: null
       };
     }
-
+    /* eslint-disable */
     async componentDidMount() {
       const { default: component } = await importComponent();
-      /* eslint-disable */
+
       this.setState({
         component: component
       });
-      /* eslint-enable */
     }
+    /* eslint-enable */
 
     /* eslint-disable */
     render() {

@@ -2,9 +2,9 @@
  * @Author: John.Guan
  * @Date: 2018-08-06 19:15:39
  * @Last Modified by: John.Guan
- * @Last Modified time: 2018-08-06 20:51:29
+ * @Last Modified time: 2018-08-07 08:07:20
  */
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { getUserInfo } from '@Api';
@@ -16,25 +16,35 @@ class JudgeUserAuth extends Component {
     // 没登录的情况下，除了本身就在login页面，都需要跳出来
     // 2、用户的type，是boss还是牛人
     // 3、用户的信息是否完善，如简历，头像
+
+    const publicList = ['/login', '/register'];
+    const nowPath = this.props.location.pathname;
+
+    if (publicList.indexOf(nowPath) > -1) {
+      return;
+    }
+
     getUserInfo()
       .then((res) => {
-        // 如果有登录信息的
-        // if (res.code === '0') {
-        //   this.props.history.push('')
-        // }
-
-        console.log(this.props.history);
-        console.log(res);
+        if (res.code === '0') {
+          // 如果有登录信息的
+          console.log(111);
+        } else {
+          // 如果没有登录信息的
+          console.log(res);
+          this.props.history.push('/login');
+        }
       });
   }
 
   render() {
-    return <div></div>;
+    return null;
   }
 }
 
 JudgeUserAuth.propTypes = {
-  history: PropTypes.object
+  history: PropTypes.object,
+  location: PropTypes.object
 };
 
 export default withRouter(JudgeUserAuth);

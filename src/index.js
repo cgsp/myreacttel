@@ -29,7 +29,7 @@ import '@Common/scss/index.scss';
 import RootRoutes from '@Router';
 
 // 引入全局的权限组件
-import JudgeUserAuth from '@VProject/business/judge-user-auth';
+import JudgeUserAuth from '@VProject/dashboard/judge-user-auth';
 
 // 引入离线缓存文件
 import registerServiceWorker from './registerServiceWorker';

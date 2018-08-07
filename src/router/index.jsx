@@ -8,8 +8,6 @@ const Login = asyncComponent(() => import('@VProject/login'));
 const Register = asyncComponent(() => import('@VProject/register'));
 const NoMatch404 = asyncComponent(() => import('@VProject/noMatch404'));
 
-
-
 // react-16里面，组件之中，没必要返回的是一个dom节点，可以返回的是多个平行的dom的节点
 // exact意思是说需要是完全匹配，如果不写这个东西的话，'/'会匹配所有的路由。因为所有的路由都带的有'/'
 // 添加了Switch之后，只渲染匹配到的第一个路由
