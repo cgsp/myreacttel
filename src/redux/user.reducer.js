@@ -1,8 +1,11 @@
 import { register } from '@Api';
+import { getRedirectPath } from '@Common/js/getRedirectPath';
 
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 const ERR_MSG = 'ERR_MSG';
 const initState = {
+  // 跳转到哪里
+  redirectTo: '',
   isAuth: false,
   msg: '',
   type: '',
@@ -13,7 +16,7 @@ const initState = {
 export function userReducer(state = initState, action) {
   switch (action.type) {
     case REGISTER_SUCCESS:
-      return { ...state, ...action.data, isAuth: true, msg: '' };
+      return { ...state, ...action.data, isAuth: true, msg: '', redirectTo: getRedirectPath(action.data) };
     case ERR_MSG:
       return { ...state, isAuth: false, msg: action.msg };
     default:
@@ -40,10 +43,10 @@ export function handleRegister({ type, user, pwd, repeatpwd }) {
 
   return (dispatch) => {
     // 发送请求
-    register({ type, user, pwd, repeatpwd })
+    register({ type, user, pwd })
       .then((res) => {
         if (res.code === '0') {
-          dispatch(successMsg({ type, user, pwd, repeatpwd }));
+          dispatch(successMsg({ type, user, pwd }));
         } else {
           errorMsg(res.msg);
         }

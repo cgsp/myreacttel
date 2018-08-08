@@ -35,7 +35,7 @@ class Register extends Component {
   }
 
 
-  handleRegister() {
+  register() {
     this.props.handleRegister(this.state);
   }
 
@@ -64,7 +64,7 @@ class Register extends Component {
           </List>
           <WhiteSpace />
           <WhiteSpace />
-          <Button type="primary" onClick={() => this.handleRegister()}>注册</Button>
+          <Button type="primary" onClick={() => this.register()}>注册</Button>
           <WhiteSpace />
           <WhiteSpace />
         </WingBlank>
