@@ -26,6 +26,19 @@ Router.post('/register', function (req, res) {
   })
 })
 
+Router.post('/login', function (req, res) {
+  console.log(req.body);
+  const { user, type, pwd } = req.body;
+  // { pwd: 0 }让pwd不在前端显示
+  User.findOne({ user, type, pwd }, { pwd: 0 }, function (err, doc) {
+    if (doc) {
+      return res.json({ code: '0', msg: '登录成功', data: doc });
+    } else {
+      return res.json({ code: '1', msg: '用户名或密码错误' });
+    }
+  })
+})
+
 Router.get('/info', function (req, res) {
   return res.json({
     code: 1

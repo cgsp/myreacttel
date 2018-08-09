@@ -1,3 +1,4 @@
 .am-notice-bar {
-  background-color: red !important;
+    background-color: red !important;
+    color: #fff !important;
 }
