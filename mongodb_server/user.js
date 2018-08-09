@@ -16,12 +16,18 @@ Router.post('/register', function (req, res) {
     if (doc) {
       return res.json({ code: '1', msg: '该用户名已经被注册' });
     }
-    User.create({ user, pwd, type }, function (e, d) {
+
+    const userModel = new User({ user, type, pwd });
+
+    userModel.save(function (e, d) {
       if (e) {
-        return res.json({ code: '1', msg: '后端出错了' });
-      } else {
-        return res.json({ code: '0', msg: '注册成功' });
+        return res.json({ code: '1', msg: '后端出错' });
       }
+
+      const { user, type, _id } = d;
+      res.cookie('userid', _id);
+
+      return res.json({ code: '0', data: { user, type, _id } });
     })
   })
 })
@@ -32,6 +38,8 @@ Router.post('/login', function (req, res) {
   // { pwd: 0 }让pwd不在前端显示
   User.findOne({ user, type, pwd }, { pwd: 0 }, function (err, doc) {
     if (doc) {
+      // 设置cookie
+      res.cookie('userid', doc._id);
       return res.json({ code: '0', msg: '登录成功', data: doc });
     } else {
       return res.json({ code: '1', msg: '用户名或密码错误' });
@@ -40,9 +48,23 @@ Router.post('/login', function (req, res) {
 })
 
 Router.get('/info', function (req, res) {
-  return res.json({
-    code: 1
+  const { userid } = req.cookies;
+  if (!userid) {
+    return res.json({
+      code: '1'
+    })
+  }
+
+  User.findOne({ _id: userid }, { pwd: 0 }, function (err, doc) {
+    if (err) {
+      return res.json({ code: '1', msg: '后端出错了' });
+    }
+    return res.json({
+      code: '0',
+      data: doc
+    })
   })
+
 })
 
 module.exports = Router;

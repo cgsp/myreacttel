@@ -2,14 +2,20 @@
  * @Author: John.Guan
  * @Date: 2018-08-06 19:15:39
  * @Last Modified by: John.Guan
- * @Last Modified time: 2018-08-07 09:41:17
+ * @Last Modified time: 2018-08-09 11:22:01
  */
 import { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { getUserInfo } from '@Api';
+import { connect } from 'react-redux';
+import { loadDataSuccess } from '@Redux/user.reducer';
 
 // 这个组件是应该放在跟组件上面的
+@connect(
+  null,
+  { loadDataSuccess }
+)
 class JudgeUserAuth extends Component {
   componentDidMount() {
     // 1、如果没登录
@@ -27,10 +33,9 @@ class JudgeUserAuth extends Component {
       .then((res) => {
         if (res.code === '0') {
           // 如果有登录信息的
-          console.log(111);
+          this.props.loadDataSuccess(res.data);
         } else {
           // 如果没有登录信息的
-          console.log(res);
           this.props.history.push('/login');
         }
       });
@@ -43,7 +48,8 @@ class JudgeUserAuth extends Component {
 
 JudgeUserAuth.propTypes = {
   history: PropTypes.object,
-  location: PropTypes.object
+  location: PropTypes.object,
+  loadDataSuccess: PropTypes.func
 };
 
 export default withRouter(JudgeUserAuth);

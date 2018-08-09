@@ -5,14 +5,14 @@ import { md5Pwd } from '@Utils/myJiaMi';
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const ERR_MSG = 'ERR_MSG';
+const LOAD_DATA = 'LOAD_DATA';
 const initState = {
   // 跳转到哪里
   redirectTo: '',
   isAuth: false,
   msg: '',
   type: '',
-  user: '',
-  pwd: ''
+  user: ''
 };
 
 export function userReducer(state = initState, action) {
@@ -21,6 +21,8 @@ export function userReducer(state = initState, action) {
       return { ...state, ...action.payload, isAuth: true, msg: '', redirectTo: getRedirectPath(action.payload) };
     case LOGIN_SUCCESS:
       return { ...state, ...action.payload, isAuth: true, msg: '', redirectTo: getRedirectPath(action.payload) };
+    case LOAD_DATA:
+      return { ...state, ...action.payload };
     case ERR_MSG:
       return { ...state, isAuth: false, msg: action.msg };
     default:
@@ -38,6 +40,11 @@ function registerSuccessMsg(data) {
 
 function loginSuccessMsg(data) {
   return { type: LOGIN_SUCCESS, payload: data };
+}
+
+// 登录拦截器，刷新页面，重新加载用户信息
+export function loadDataSuccess(data) {
+  return { type: LOAD_DATA, payload: data };
 }
 
 export function handleRegister({ type, user, pwd, repeatpwd }) {
@@ -79,3 +86,4 @@ export function handleLogin({ type, user, pwd }) {
       });
   };
 }
+
