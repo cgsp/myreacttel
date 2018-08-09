@@ -1,6 +1,7 @@
 import { register, login } from '@Api';
 import { getRedirectPath } from '@Common/js/getRedirectPath';
 import { md5Pwd } from '@Utils/myJiaMi';
+import MiddleTip from '@VBase/middle-tip';
 
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -49,10 +50,12 @@ export function loadDataSuccess(data) {
 
 export function handleRegister({ type, user, pwd, repeatpwd }) {
   if (!user || !pwd) {
+    MiddleTip('用户名或密码不能为空！');
     return errorMsg('用户名或密码不能为空！');
   }
 
   if (repeatpwd !== pwd) {
+    MiddleTip('密码与确认密码必须相同！');
     return errorMsg('密码与确认密码必须相同！');
   }
 
@@ -64,6 +67,7 @@ export function handleRegister({ type, user, pwd, repeatpwd }) {
           dispatch(registerSuccessMsg({ type, user, pwd: md5Pwd(pwd) }));
         } else {
           dispatch(errorMsg(res.msg));
+          MiddleTip(res.msg);
         }
       });
   };
@@ -71,6 +75,7 @@ export function handleRegister({ type, user, pwd, repeatpwd }) {
 
 export function handleLogin({ type, user, pwd }) {
   if (!user || !pwd) {
+    MiddleTip('用户名或密码不能为空！');
     return errorMsg('用户名或密码不能为空！');
   }
 
@@ -82,6 +87,7 @@ export function handleLogin({ type, user, pwd }) {
           dispatch(loginSuccessMsg(res.data));
         } else {
           dispatch(errorMsg(res.msg));
+          MiddleTip(res.msg);
         }
       });
   };

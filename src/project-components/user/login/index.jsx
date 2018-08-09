@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { WingBlank, WhiteSpace, List, InputItem, Button, Radio, NoticeBar, Icon } from 'antd-mobile';
+import { WingBlank, WhiteSpace, List, InputItem, Button, Radio } from 'antd-mobile';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleLogin } from '@Redux/user.reducer';
 import { PropTypes } from 'prop-types';
 import Logo from '@VProject/business/logo';
+import css from './index.scss';
 
 
 @connect(
@@ -41,11 +42,7 @@ class Login extends Component {
   render() {
     const RadioItem = Radio.RadioItem;
     return (
-      <div>
-        {/* 错误提示 */}
-        {this.props.msg ? <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
-          {this.props.msg}
-        </NoticeBar> : null}
+      <div className={css['login']}>
         {/* 跳转的逻辑 */}
         {this.props.redirectTo ? <Redirect to={this.props.redirectTo} /> : null}
         <Logo />
@@ -78,7 +75,6 @@ class Login extends Component {
 
 Login.propTypes = {
   handleLogin: PropTypes.func,
-  msg: PropTypes.string,
   redirectTo: PropTypes.string,
   history: PropTypes.object,
 };
