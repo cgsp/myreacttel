@@ -63,7 +63,7 @@ export function handleRegister({ type, user, pwd, repeatpwd }) {
         if (res.code === '0') {
           dispatch(registerSuccessMsg({ type, user, pwd: md5Pwd(pwd) }));
         } else {
-          errorMsg(res.msg);
+          dispatch(errorMsg(res.msg));
         }
       });
   };
@@ -81,7 +81,7 @@ export function handleLogin({ type, user, pwd }) {
         if (res.code === '0') {
           dispatch(loginSuccessMsg(res.data));
         } else {
-          errorMsg(res.msg);
+          dispatch(errorMsg(res.msg));
         }
       });
   };

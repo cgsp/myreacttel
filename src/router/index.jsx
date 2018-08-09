@@ -4,8 +4,9 @@ import { asyncComponent } from './asyncComponent';
 
 // 让路由对应的组件都是异步加载
 const App = asyncComponent(() => import('../App'));
-const Login = asyncComponent(() => import('@VProject/login'));
-const Register = asyncComponent(() => import('@VProject/register'));
+const Login = asyncComponent(() => import('@VProject/user/login'));
+const Register = asyncComponent(() => import('@VProject/user/register'));
+const UserInfo = asyncComponent(() => import('@VProject/user/info'));
 const NoMatch404 = asyncComponent(() => import('@VProject/noMatch404'));
 
 // react-16里面，组件之中，没必要返回的是一个dom节点，可以返回的是多个平行的dom的节点
@@ -17,6 +18,7 @@ export default () => (
     <Route path="/" render={() => <Redirect to="/login" />} exact key="/" />
     <Route path="/login" component={Login} key="/login" />
     <Route path="/register" component={Register} key="/register" />
+    <Route path="/userInfo/:type" component={UserInfo} key="/userInfo" />
     <Route path="/app/:location" component={App} key="/app" />
     <Route path="/noMatch404" component={NoMatch404} key="/noMatch404" />
     <Redirect to="/noMatch404" />

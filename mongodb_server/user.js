@@ -42,7 +42,7 @@ Router.post('/login', function (req, res) {
       res.cookie('userid', doc._id);
       return res.json({ code: '0', msg: '登录成功', data: doc });
     } else {
-      return res.json({ code: '1', msg: '用户名或密码错误' });
+      return res.json({ code: '1', msg: '用户名或密码或类型错误' });
     }
   })
 })
@@ -66,5 +66,10 @@ Router.get('/info', function (req, res) {
   })
 
 })
+
+// 删除全部
+// User.remove({}, function (e, d) {
+
+// })
 
 module.exports = Router;
