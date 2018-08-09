@@ -35,6 +35,7 @@ class Login extends Component {
   }
 
   register() {
+    // 11
     this.props.history.push('/register');
   }
 
