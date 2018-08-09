@@ -40,6 +40,11 @@
     "comma-dangle": 0,
     "class-methods-use-this": 0,
     "no-debugger": 0,
-    "no-class-assign": 0
+    "no-class-assign": 0,
+    "global-require": 0,
+    "import/no-dynamic-require": 0,
+    "react/jsx-boolean-value": 0,
+    "react/jsx-wrap-multilines": 0,
+    "react/jsx-closing-bracket-location": 0
   }
 }
