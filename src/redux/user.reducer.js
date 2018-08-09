@@ -1,5 +1,6 @@
 import { register } from '@Api';
 import { getRedirectPath } from '@Common/js/getRedirectPath';
+import { md5Pwd } from '@Utils/myJiaMi';
 
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 const ERR_MSG = 'ERR_MSG';
@@ -43,10 +44,10 @@ export function handleRegister({ type, user, pwd, repeatpwd }) {
 
   return (dispatch) => {
     // 发送请求
-    register({ type, user, pwd })
+    register({ type, user, pwd: md5Pwd(pwd) })
       .then((res) => {
         if (res.code === '0') {
-          dispatch(successMsg({ type, user, pwd }));
+          dispatch(successMsg({ type, user, pwd: md5Pwd(pwd) }));
         } else {
           errorMsg(res.msg);
         }

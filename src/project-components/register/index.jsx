@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { WingBlank, WhiteSpace, List, InputItem, Button, Radio, NoticeBar, Icon } from 'antd-mobile';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleRegister } from '@Redux/user.reducer';
 import { PropTypes } from 'prop-types';
@@ -43,6 +44,9 @@ class Register extends Component {
     const RadioItem = Radio.RadioItem;
     return (
       <div className={css['register']}>
+        {/* 跳转的逻辑 */}
+        {this.props.redirectPath ? <Redirect to={this.props.redirectPath} /> : null}
+        {/* 错误提示 */}
         {this.props.msg ? <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
           {this.props.msg}
         </NoticeBar> : null}
@@ -75,7 +79,8 @@ class Register extends Component {
 
 Register.propTypes = {
   handleRegister: PropTypes.func,
-  msg: PropTypes.string
+  msg: PropTypes.string,
+  redirectPath: PropTypes.string,
 };
 
 export default Register;
