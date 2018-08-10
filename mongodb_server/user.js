@@ -67,6 +67,34 @@ Router.get('/info', function (req, res) {
 
 })
 
+Router.post('/update', function (req, res) {
+  const { userid } = req.cookies;
+  console.log(userid);
+  if (!userid) {
+    return json.dumps({
+      code: '1'
+    })
+  }
+
+  const body = req.body;
+  User.findByIdAndUpdate(userid, body, function (err, doc) {
+    if (err) {
+      return json.dumps({
+        code: '1'
+      })
+    }
+    const data = Object.assign({}, {
+      user: doc.user,
+      type: doc.type
+    }, body);
+
+    return res.json({
+      code: '0',
+      data: data
+    });
+  })
+})
+
 // 删除全部
 // User.remove({}, function (e, d) {
 

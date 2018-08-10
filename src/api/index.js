@@ -9,3 +9,6 @@ export const register = (data) => { return myAxios({ url: 'user/register', metho
 
 // 登录
 export const login = (data) => { return myAxios({ url: 'user/login', method: 'post', data, headers: defaultHeader }); };
+
+// 更新用户信息
+export const update = (data) => { return myAxios({ url: 'user/update', method: 'post', data, headers: defaultHeader }); };

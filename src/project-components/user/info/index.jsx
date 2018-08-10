@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
-import { WingBlank, WhiteSpace, NavBar, InputItem, TextareaItem } from 'antd-mobile';
+import { WingBlank, WhiteSpace, NavBar, InputItem, TextareaItem, Button } from 'antd-mobile';
+import { connect } from 'react-redux';
+import { updateInfo } from '@Redux/user.reducer';
 import AvatarSelect from '@VBase/avatar-selector';
 import css from './index.scss';
 
+@connect(
+  state => ({ user: state.userReducer }),
+  { updateInfo }
+)
 class UserInfo extends Component {
   constructor() {
     super();
@@ -24,6 +31,7 @@ class UserInfo extends Component {
   }
 
   render() {
+    console.log(this.props);
     const checkedAvatar =
       this.state.avatar ?
         (
@@ -49,6 +57,7 @@ class UserInfo extends Component {
     ) : null;
     return (
       <div className={css['user-info']}>
+        {this.props.user.redirectTo ? <Redirect to={this.props.user.redirectTo} /> : null}
         <NavBar
           mode="dark"
         >{this.props.match.params.type === 'boss' ? 'Boss个人信息完善' : '牛人个人信息完善'}</NavBar>
@@ -57,6 +66,8 @@ class UserInfo extends Component {
           <AvatarSelect clickAvatar={e => this.clickAvatar(e)} />
           <WhiteSpace />
           {content}
+          <WhiteSpace />
+          <Button onClick={() => this.props.updateInfo({ ...this.state, ...this.props.user })} type="primary">保存</Button>
         </WingBlank>
       </div>
     );
@@ -64,6 +75,8 @@ class UserInfo extends Component {
 }
 UserInfo.propTypes = {
   match: PropTypes.object,
+  updateInfo: PropTypes.func,
+  user: PropTypes.object,
 };
 
 export default UserInfo;

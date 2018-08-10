@@ -7,7 +7,8 @@ import Tab from '@VProject/dashboard/tab';
 import { asyncComponent } from '@Router/asyncComponent';
 
 // 业务组件
-const Ha = asyncComponent(() => import('@VProject/business/ha'));
+const Boss = asyncComponent(() => import('@VProject/business/boss'));
+const Genius = asyncComponent(() => import('@VProject/business/genius'));
 
 class App extends Component {
   render() {
@@ -16,7 +17,8 @@ class App extends Component {
         <Header />
         <Tab />
         <Switch>
-          <Route path="/app/ha" component={Ha} key="ha" />
+          <Route path="/app/boss" component={Boss} key="appboss" />
+          <Route path="/app/genius" component={Genius} key="appgenius" />
           <Redirect to="/noMatch404" />
         </Switch>
       </div>
