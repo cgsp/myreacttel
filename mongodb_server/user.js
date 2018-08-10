@@ -79,8 +79,10 @@ Router.post('/update', function (req, res) {
   const body = req.body;
   User.findByIdAndUpdate(userid, body, function (err, doc) {
     if (err) {
-      return json.dumps({
-        code: '1'
+      return res.json({
+        code: '1',
+        err: err,
+        msg: '后端报错'
       })
     }
     const data = Object.assign({}, {

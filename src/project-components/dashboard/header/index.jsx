@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import css from './index.scss';
+import { PropTypes } from 'prop-types';
+import { NavBar } from 'antd-mobile';
 
-export default class extends Component {
-  state = {};
+class Header extends Component {
+  static propTypes = {
+    title: PropTypes.string.isRequired
+  };
 
   render() {
     return (
-      <div className={css['header']}>这里是头部</div>
+      <NavBar mode="dark">{this.props.title}</NavBar>
     );
   }
 }
+
+export default Header;

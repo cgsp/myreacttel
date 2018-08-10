@@ -54,10 +54,19 @@ class UserInfo extends Component {
           autoHeight
         />
       </div>
-    ) : null;
+    ) : (<div>
+      <InputItem placeholder="请输入职位名称" onChange={v => this.onChange(v, 'title')}>求职岗位</InputItem>
+      <TextareaItem
+        title="个人简介"
+        placeholder="请输入职位简介"
+        rows={3}
+        onChange={v => this.onChange(v, 'desc')}
+        autoHeight
+      />
+    </div>);
     return (
       <div className={css['user-info']}>
-        {this.props.user.redirectTo ? <Redirect to={this.props.user.redirectTo} /> : null}
+        {this.props.user.redirectTo && this.props.user.redirectTo !== this.props.location.pathname ? <Redirect to={this.props.user.redirectTo} /> : null}
         <NavBar
           mode="dark"
         >{this.props.match.params.type === 'boss' ? 'Boss个人信息完善' : '牛人个人信息完善'}</NavBar>
@@ -77,6 +86,7 @@ UserInfo.propTypes = {
   match: PropTypes.object,
   updateInfo: PropTypes.func,
   user: PropTypes.object,
+  location: PropTypes.object,
 };
 
 export default UserInfo;
