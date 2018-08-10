@@ -4,8 +4,15 @@ const model = require('./model');
 const User = model.getModel('user');
 
 Router.get('/list', function (req, res) {
-  User.find({}, function (err, doc) {
-    return res.json(doc);
+  const { type } = req.query;
+  if (!type) {
+    User.find({}, function (err, doc) {
+      return res.json({ code: '0', data: doc });
+    })
+    return;
+  }
+  User.find({ type }, function (err, doc) {
+    return res.json({ code: '0', data: doc });
   })
 })
 
@@ -98,7 +105,7 @@ Router.post('/update', function (req, res) {
 })
 
 // 删除全部
-// User.remove({}, function (e, d) {
+// User.remove({user:'gsp'}, function (e, d) {
 
 // })
 

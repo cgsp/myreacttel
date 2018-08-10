@@ -21,6 +21,7 @@ class Tab extends Component {
     return (
       <div className={css['tab']}>
         <TabBar
+          className={css['test']}
           unselectedTintColor="#949494"
           tintColor="#108ee9"
           barTintColor="white"

@@ -58,10 +58,9 @@ class App extends Component {
       <div>
         <Header title={headerTitle} />
         <Switch>
-          <Route path="/app/boss" component={Boss} key="appboss" />
-          <Route path="/app/genius" component={Genius} key="appgenius" />
-          <Route path="/app/userCenter" component={UserCenter} key="appuserCenter" />
-          <Route path="/app/message" component={Message} key="appmessage" />
+          {navList.filter(item => !item.hide).map(item => (
+            <Route path={item.path} component={item.component} key={item.path} />
+          ))}
           <Redirect to="/noMatch404" />
         </Switch>
         <Tab data={navList} />

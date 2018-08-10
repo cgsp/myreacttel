@@ -12,3 +12,6 @@ export const login = (data) => { return myAxios({ url: 'user/login', method: 'po
 
 // 更新用户信息
 export const update = (data) => { return myAxios({ url: 'user/update', method: 'post', data, headers: defaultHeader }); };
+
+// 获取用户列表数据
+export const userList = (type) => { return myAxios({ url: 'user/list', method: 'get', params: { type }, headers: defaultHeader }); };
