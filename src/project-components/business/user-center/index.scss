@@ -1,0 +1,14 @@
+.user-center {
+    .title {
+        &>div {
+            color: #fff;
+            background-color: #999;;
+            .text {
+                &>div>div {
+                    color: #108ee9;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
