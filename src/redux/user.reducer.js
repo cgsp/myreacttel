@@ -6,6 +6,7 @@ import MiddleTip from '@VBase/middle-tip';
 const AUTH_SUCCESS = 'AUTH_SUCCESS';
 const ERR_MSG = 'ERR_MSG';
 const LOAD_DATA = 'LOAD_DATA';
+const LOG_OUT = 'LOG_OUT';
 const initState = {
   // 跳转到哪里
   redirectTo: '',
@@ -22,6 +23,8 @@ export function userReducer(state = initState, action) {
       return { ...state, ...action.payload };
     case ERR_MSG:
       return { ...state, msg: action.msg };
+    case LOG_OUT:
+      return { ...initState, redirectTo: '/login' };
     default:
       return state;
   }
@@ -99,5 +102,9 @@ export function updateInfo(data) {
         }
       });
   };
+}
+
+export function logoutSubmit() {
+  return { type: LOG_OUT };
 }
 

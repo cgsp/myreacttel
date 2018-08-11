@@ -3,6 +3,7 @@ import MiddleTip from '@VBase/middle-tip';
 
 const USER_LIST_LOAD_DATA = 'USER_LIST_LOAD_DATA';
 const USER_LIST_ERR_MSG = 'USER_LIST_ERR_MSG';
+const USER_LIST_LOG_OUT = 'USER_LIST_LOG_OUT';
 const initState = {
   userList: [],
   msg: ''
@@ -14,6 +15,8 @@ export function userListReducer(state = initState, action) {
       return { ...state, ...action.payload };
     case USER_LIST_ERR_MSG:
       return { ...state, msg: action.msg };
+    case USER_LIST_LOG_OUT:
+      return initState;
     default:
       return state;
   }
@@ -42,5 +45,10 @@ export function getUserList(type) {
       });
   };
 }
+
+export function user_list_logoutSubmit() {
+  return { type: USER_LIST_LOG_OUT };
+}
+
 
 

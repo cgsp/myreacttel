@@ -44,7 +44,7 @@ class Login extends Component {
     return (
       <div className={css['login']}>
         {/* 跳转的逻辑 */}
-        {this.props.redirectTo ? <Redirect to={this.props.redirectTo} /> : null}
+        {this.props.redirectTo && this.props.redirectTo !== '/login' ? <Redirect to={this.props.redirectTo} /> : null}
         <Logo />
         <WingBlank>
           <List>
