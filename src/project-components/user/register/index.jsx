@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { handleRegister } from '@Redux/user.reducer';
 import { PropTypes } from 'prop-types';
 import Logo from '@VProject/business/logo';
+import UserHoc from '../user-hoc';
 import css from './index.scss';
 
 
@@ -12,15 +13,21 @@ import css from './index.scss';
   state => state.userReducer,
   { handleRegister }
 )
+
+@UserHoc
 class Register extends Component {
-  constructor() {
-    super();
-    this.state = {
-      type: 'genius',
-      user: '',
-      pwd: '',
-      repeatpwd: ''
-    };
+  // constructor() {
+  //   super();
+  //   this.props.state = {
+  //     type: 'genius',
+  //     user: '',
+  //     pwd: '',
+  //     repeatpwd: ''
+  //   };
+  // }
+
+  componentDidMount() {
+    this.props.handleChange('genius', 'type');
   }
 
   onTypeChange(type) {
@@ -29,15 +36,15 @@ class Register extends Component {
     });
   }
 
-  handleChange(value, key) {
-    this.setState({
-      [key]: value
-    });
-  }
+  // handleChange(value, key) {
+  //   this.setState({
+  //     [key]: value
+  //   });
+  // }
 
 
   register() {
-    this.props.handleRegister(this.state);
+    this.props.handleRegister(this.props.state);
   }
 
   render() {
@@ -49,16 +56,16 @@ class Register extends Component {
         <Logo />
         <WingBlank>
           <List>
-            <InputItem onChange={value => this.handleChange(value, 'user')}>用户名</InputItem>
+            <InputItem onChange={value => this.props.handleChange(value, 'user')}>用户名</InputItem>
             <WhiteSpace />
-            <InputItem type="password" onChange={value => this.handleChange(value, 'pwd')}>密码</InputItem>
+            <InputItem type="password" onChange={value => this.props.handleChange(value, 'pwd')}>密码</InputItem>
             <WhiteSpace />
-            <InputItem type="password" onChange={value => this.handleChange(value, 'repeatpwd')}>确认密码</InputItem>
+            <InputItem type="password" onChange={value => this.props.handleChange(value, 'repeatpwd')}>确认密码</InputItem>
             <WhiteSpace />
-            <RadioItem checked={this.state.type === 'genius'} onChange={() => this.handleChange('genius', 'type')}>
+            <RadioItem checked={this.props.state.type === 'genius'} onChange={() => this.props.handleChange('genius', 'type')}>
               牛人
             </RadioItem>
-            <RadioItem checked={this.state.type === 'boss'} onChange={() => this.handleChange('boss', 'type')}>
+            <RadioItem checked={this.props.state.type === 'boss'} onChange={() => this.props.handleChange('boss', 'type')}>
               Boss
             </RadioItem>
           </List>
@@ -75,7 +82,9 @@ class Register extends Component {
 
 Register.propTypes = {
   handleRegister: PropTypes.func,
-  redirectTo: PropTypes.string
+  redirectTo: PropTypes.string,
+  handleChange: PropTypes.func,
+  state: PropTypes.object,
 };
 
 export default Register;

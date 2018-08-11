@@ -5,34 +5,33 @@ import { connect } from 'react-redux';
 import { handleLogin } from '@Redux/user.reducer';
 import { PropTypes } from 'prop-types';
 import Logo from '@VProject/business/logo';
+import UserHoc from '../user-hoc';
 import css from './index.scss';
-
 
 @connect(
   state => state.userReducer,
   { handleLogin }
 )
+@UserHoc
 class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-      type: 'genius',
-      user: '',
-      pwd: '',
-      tip: null
-    };
-    this.timer = null;
+  // constructor() {
+  //   super();
+  // }
+
+  componentDidMount() {
+    this.props.handleChange('genius', 'type');
   }
 
-  handleChange(value, key) {
-    this.setState({
-      [key]: value
-    });
-  }
+
+  // handleChange(value, key) {
+  //   this.setState({
+  //     [key]: value
+  //   });
+  // }
 
 
   login() {
-    this.props.handleLogin(this.state);
+    this.props.handleLogin(this.props.state);
   }
 
   register() {
@@ -48,14 +47,14 @@ class Login extends Component {
         <Logo />
         <WingBlank>
           <List>
-            <InputItem onChange={value => this.handleChange(value, 'user')}>用户名</InputItem>
+            <InputItem onChange={value => this.props.handleChange(value, 'user')}>用户名</InputItem>
             <WhiteSpace />
-            <InputItem type="password" onChange={value => this.handleChange(value, 'pwd')}>密码</InputItem>
+            <InputItem type="password" onChange={value => this.props.handleChange(value, 'pwd')}>密码</InputItem>
             <WhiteSpace />
-            <RadioItem checked={this.state.type === 'genius'} onChange={() => this.handleChange('genius', 'type')}>
+            <RadioItem checked={this.props.state.type === 'genius'} onChange={() => this.props.handleChange('genius', 'type')}>
               牛人
             </RadioItem>
-            <RadioItem checked={this.state.type === 'boss'} onChange={() => this.handleChange('boss', 'type')}>
+            <RadioItem checked={this.props.state.type === 'boss'} onChange={() => this.props.handleChange('boss', 'type')}>
               Boss
             </RadioItem>
           </List>
@@ -75,8 +74,10 @@ class Login extends Component {
 
 Login.propTypes = {
   handleLogin: PropTypes.func,
+  handleChange: PropTypes.func,
   redirectTo: PropTypes.string,
   history: PropTypes.object,
+  state: PropTypes.object,
 };
 
 export default Login;

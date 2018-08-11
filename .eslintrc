@@ -49,6 +49,9 @@
     "no-param-reassign": 0,
     "react/no-array-index-key": 0,
     "no-underscore-dangle": 0,
-    "camelcase": 0
+    "camelcase": 0,
+    "func-names": 0,
+    "no-func-assign": 0,
+    "react/no-multi-comp": 0
   }
 }
