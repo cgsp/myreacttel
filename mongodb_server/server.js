@@ -3,13 +3,28 @@ const express = require('express');
 const bodyParser = require('body-parser');
 // 解析cookie的
 const cookieParser = require('cookie-parser');
-
+// 创建app
+const app = express();
 // 引入user文档
 const userRouter = require('./user');
 
-// 创建app
-const app = express();
-// 使用
+// socket与express结合
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
+// socket事件的接口
+io.on('connection', function (socket) {
+  console.log('连接到服务端了');
+  // 当前实例监听
+  socket.on('sendMsg', function (data) {
+    console.log(data);
+    // 发送到全局
+    io.emit('receiveMsg', data);
+  })
+})
+
+
+// 使用解析post和cookie的包
 app.use(cookieParser());
 app.use(bodyParser.json());
 
@@ -22,7 +37,11 @@ app.get('/', function (req, res) {
 app.use('/user', userRouter);
 
 // 监听端口号
-app.listen(9093, function () {
+// app.listen(9093, function () {
+//   console.log('Node app start at port 9093');
+// });
+server.listen(9093, function () {
   console.log('Node app start at port 9093');
 });
+
 

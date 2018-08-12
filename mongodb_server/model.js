@@ -10,11 +10,11 @@ mongoose.connection.on('connected', function () {
 
 const models = {
   user: {
-    'user': { type: String, require: true },
-    'pwd': { type: String, require: true },
-    'type': { 'type': String, require: true },
+    'user': { 'type': String, 'require': true },
+    'pwd': { 'type': String, 'require': true },
+    'type': { 'type': String, 'require': true },
     // 头像
-    'avatar': { 'type': String, require: true },
+    'avatar': { 'type': String, 'require': true },
     // 个人简介或者职位简介
     'desc': { 'type': String },
     // 职位名
@@ -24,7 +24,12 @@ const models = {
     'money': { 'type': String }
   },
   chat: {
-
+    'chartid': { 'type': String },
+    'from': { 'type': String, 'require': true },
+    'to': { 'type': String, 'require': true },
+    'read': { 'type': Boolean, 'default': false },
+    'content': { 'type': String, 'require': true, 'default': '' },
+    'create_time': { 'type': Number, 'default': new Date().getTime() }
   }
 }
 

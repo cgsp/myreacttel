@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { Card, WingBlank, WhiteSpace } from 'antd-mobile';
 import { PropTypes } from 'prop-types';
 
+@withRouter
 export default class ChartUserList extends Component {
   static propTypes = {
     data: PropTypes.array.isRequired,
+    history: PropTypes.object,
   }
 
   render() {
@@ -13,7 +16,7 @@ export default class ChartUserList extends Component {
         {this.props.data.map(item => (
           <WingBlank key={item._id} size="lg">
             <WhiteSpace size="lg" />
-            <Card key={item._id}>
+            <Card key={item._id} onClick={() => this.props.history.push(`/app/chart/${item.user}`)}>
               <Card.Header
                 title={item.user}
                 thumb={item.avatar ? require(`@VBase/avatar-selector/avator-imgs/${item.avatar}.png`) : 'https://gw.alipayobjects.com/zos/rmsportal/MRhHctKOineMbKAZslML.jpg'}

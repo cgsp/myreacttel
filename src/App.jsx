@@ -11,6 +11,7 @@ const Boss = asyncComponent(() => import('@VProject/business/boss'));
 const Genius = asyncComponent(() => import('@VProject/business/genius'));
 const UserCenter = asyncComponent(() => import('@VProject/business/user-center'));
 const Message = asyncComponent(() => import('@VProject/business/message'));
+const Chart = asyncComponent(() => import('@VProject/business/chart'));
 
 @connect(
   state => state.userReducer,
@@ -48,10 +49,18 @@ class App extends Component {
         text: '消息',
         icon: 'msg',
         component: Message
+      },
+      {
+        title: '聊天窗口',
+        path: '/app/chart',
+        text: '聊天窗口',
+        icon: 'msg',
+        component: Message,
+        hide: true
       }
     ];
 
-    const headerItem = navList.find(item => item.path === this.props.location.pathname);
+    const headerItem = navList.find(item => this.props.location.pathname.indexOf(item.path) > -1);
     const headerTitle = headerItem ? headerItem.title : '';
 
     const app = (
@@ -61,6 +70,7 @@ class App extends Component {
           {navList.filter(item => !item.hide).map(item => (
             <Route path={item.path} component={item.component} key={item.path} />
           ))}
+          <Route path='/app/chart/:user' component={Chart} key='appchart' />
           <Redirect to="/noMatch404" />
         </Switch>
         <Tab data={navList} />
