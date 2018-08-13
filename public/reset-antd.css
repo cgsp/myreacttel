@@ -2,3 +2,31 @@
     background-color: red !important;
     color: #fff !important;
 }
+
+.am-list-item .am-input-control input {
+    color: #108ee9 !important;
+}
+
+.chat-page .chat-me .am-list-extra {
+    flex-basis: auto;
+}
+
+.chat-page .chat-me .am-list-content {
+    padding-right: 15px;
+    text-align: right;
+}
+
+.chat-page .am-grid-icon {
+    display: none;
+}
+
+.chat-page .am-grid-text {
+    margin-top: 0;
+}
+
+.stick-footer {
+    z-index: 100000;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

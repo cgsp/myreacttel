@@ -40,6 +40,19 @@
     "comma-dangle": 0,
     "class-methods-use-this": 0,
     "no-debugger": 0,
-    "no-class-assign": 0
+    "no-class-assign": 0,
+    "global-require": 0,
+    "import/no-dynamic-require": 0,
+    "react/jsx-boolean-value": 0,
+    "react/jsx-wrap-multilines": 0,
+    "react/jsx-closing-bracket-location": 0,
+    "no-param-reassign": 0,
+    "react/no-array-index-key": 0,
+    "no-underscore-dangle": 0,
+    "camelcase": 0,
+    "func-names": 0,
+    "no-func-assign": 0,
+    "react/no-multi-comp": 0,
+    "jsx-a11y/no-static-element-interactions": 0
   }
 }
