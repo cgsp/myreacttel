@@ -16,10 +16,7 @@
   "rules": {
     "generator-star-spacing": "off",
     "space-before-function-paren": 0,
-    "semi": [
-      "error",
-      "always"
-    ],
+    "semi": 0,
     "indent": 0,
     "no-multiple-empty-lines": 0,
     "no-extra-parens": 0,
@@ -53,6 +50,10 @@
     "func-names": 0,
     "no-func-assign": 0,
     "react/no-multi-comp": 0,
-    "jsx-a11y/no-static-element-interactions": 0
+    "jsx-a11y/no-static-element-interactions": 0,
+    "no-else-return": 0,
+    "no-throw-literal": 0,
+    "arrow-parens": 0,
+    "no-alert": 0
   }
 }

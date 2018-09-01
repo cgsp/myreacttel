@@ -44,4 +44,37 @@ server.listen(9093, function () {
   console.log('Node app start at port 9093');
 });
 
+app.use('/test/id', function (req, res) {
+  setTimeout(() => {
+    res.json({
+      code: 0,
+      msg: '成功',
+      data: {
+        total: 15,
+        id: 111112222
+      }
+    })
+  }, 1000);
+})
+
+app.use('/test/info', function (req, res) {
+  console.log(req.body)
+  setTimeout(() => {
+    if (req.body.id === 111112222) {
+      res.json({
+        code: 0,
+        msg: '成功',
+        data: {
+          info: '我爱常慧'
+        }
+      })
+    } else {
+      res.json({
+        code: 1,
+        msg: '失败'
+      })
+    }
+  }, 2000);
+})
+
 

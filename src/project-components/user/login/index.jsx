@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleLogin } from '@Redux/user.reducer';
 import { PropTypes } from 'prop-types';
+import { apiTestId, apiTestInfo } from '@Api'
 import Logo from '@VProject/business/logo';
 import UserHoc from '../user-hoc';
 import css from './index.scss';
@@ -29,6 +30,27 @@ class Login extends Component {
   //   });
   // }
 
+  test = async () => {
+    try {
+      const idRes = await apiTestId()
+      if (idRes.code !== 0) {
+        alert('报错了')
+        return
+      }
+
+      const { id } = idRes.data
+      const infoRes = await apiTestInfo(id)
+
+      if (infoRes.code !== 0) {
+        alert('报错了')
+        return
+      }
+
+      console.log(infoRes.data.info)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   login() {
     this.props.handleLogin(this.props.state);
@@ -66,6 +88,7 @@ class Login extends Component {
           <WhiteSpace />
           <Button type="primary" onClick={() => this.register()}>注册</Button>
           <WhiteSpace />
+          <Button type="primary" onClick={this.test}>测试</Button>
           <WhiteSpace />
         </WingBlank>
       </div>

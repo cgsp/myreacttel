@@ -15,3 +15,9 @@ export const update = (data) => { return myAxios({ url: 'user/update', method: '
 
 // 获取用户列表数据
 export const userList = (type) => { return myAxios({ url: 'user/list', method: 'get', params: { type }, headers: defaultHeader }); };
+
+// 测试
+export const apiTestId = () => { return myAxios({ url: 'test/id', method: 'get', params: {}, headers: defaultHeader }); };
+
+// 测试
+export const apiTestInfo = (id) => { return myAxios({ url: 'test/info', method: 'post', params: {}, data: { id }, headers: defaultHeader }); };
