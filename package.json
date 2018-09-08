@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@atlaskit/css-reset": "^3.0.1",
     "antd-mobile": "^2.2.2",
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",
@@ -50,6 +51,7 @@
     "qs": "^6.5.2",
     "raf": "^3.4.0",
     "react": "^16.4.1",
+    "react-beautiful-dnd": "^9.0.2",
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
@@ -60,6 +62,7 @@
     "sass-loader": "^7.0.3",
     "socket.io-client": "^2.1.1",
     "style-loader": "0.19.0",
+    "styled-components": "^3.4.5",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.6.2",
     "webpack": "3.8.1",
