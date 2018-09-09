@@ -1,21 +1,42 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
+import { TabBar } from 'antd-mobile';
 import css from './index.scss';
 
-export default class extends Component {
+@withRouter
+class Tab extends Component {
   render() {
+    const items = this.props.data.filter(item => !item.hide).map(item => (
+      <TabBar.Item
+        title={item.text}
+        key={item.text}
+        icon={{ uri: require(`./imgs/${item.icon}.png`) }}
+        selectedIcon={{ uri: require(`./imgs/${item.icon}-active.png`) }}
+        selected={this.props.location.pathname === item.path}
+        onPress={() => this.props.history.push(item.path)}
+      >
+      </TabBar.Item>
+    ));
     return (
-      <ul className={css['tab-wrapper']}>
-        <li className={css['tab-item']}>
-          <Link to="/app/yiying">一营</Link>
-        </li>
-        <li className={css['tab-item']}>
-          <Link to="/app/erying">二营</Link>
-        </li>
-        <li className={css['tab-item']}>
-          <Link to={{ pathname: '/app/sanying', state: { type: 'sex' } }}>三营</Link>
-        </li>
-      </ul>
+      <div className={css['tab']}>
+        <TabBar
+          className={css['test']}
+          unselectedTintColor="#949494"
+          tintColor="#108ee9"
+          barTintColor="white"
+        >
+          {items}
+        </TabBar>
+      </div>
     );
   }
 }
+
+Tab.propTypes = {
+  data: PropTypes.array,
+  history: PropTypes.object,
+  location: PropTypes.object,
+};
+
+export default Tab;

@@ -1,0 +1,8 @@
+.am-notice-bar {
+    background-color: red !important;
+    color: #fff !important;
+}
+
+.am-list-item .am-input-control input {
+    color: #108ee9 !important;
+}
